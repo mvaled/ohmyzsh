@@ -33,6 +33,10 @@ if [[ ! $DISABLE_VENV_CD -eq 1 ]]; then
   # directory name of the project. Virtual environment name can be overridden
   # by placing a .venv file in the project root with a virtualenv name in it.
   function workon_cwd {
+    if [[ -n ${VIRTUAL_ENV} ]]; then
+      return
+    fi
+
     if [[ -z "$WORKON_CWD" ]]; then
       local WORKON_CWD=1
       # Get absolute path, resolving symlinks

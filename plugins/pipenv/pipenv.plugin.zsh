@@ -16,10 +16,12 @@ _togglePipenvShell() {
   fi
 
   # activate the shell if Pipfile exists
-  if [[ "$PIPENV_ACTIVE" != 1 ]]; then
-    if [[ -f "$PWD/Pipfile" ]]; then
-      export pipfile_dir="$PWD"
-      pipenv shell
+  if [[ -z ${VIRTUAL_ENV} ]]; then
+    if [[ "$PIPENV_ACTIVE" != 1 ]]; then
+      if [[ -f "$PWD/Pipfile" ]]; then
+        export pipfile_dir="$PWD"
+        pipenv shell
+      fi
     fi
   fi
 }
